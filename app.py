@@ -2,10 +2,17 @@ import streamlit as st
 import numpy as np
 import pickle
 import os
-import sklearn
+import sklearn  # Explicit import to catch issues early
+
+# Function to display installed packages (for debugging)
+def show_installed_packages():
+    result = subprocess.run(['pip', 'freeze'], capture_output=True, text=True)
+    st.text(result.stdout)
+
+show_installed_packages()
 
 # Load the machine learning model
-model_path = 'heart_disease_model.pkl'
+model_path = 'model/heart_disease_model.pkl'
 model = None
 if not os.path.exists(model_path):
     st.error(f"Model file not found: {model_path}")
