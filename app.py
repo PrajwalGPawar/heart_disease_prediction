@@ -3,15 +3,6 @@ import numpy as np
 import pandas as pd
 import pickle
 import os
-import subprocess
-import sklearn  # Ensure sklearn is installed
-
-# Function to display installed packages (for debugging)
-def show_installed_packages():
-    result = subprocess.run(['pip', 'freeze'], capture_output=True, text=True)
-    st.text(result.stdout)
-
-show_installed_packages()
 
 # Load the machine learning model
 model_path = 'heart_disease_model.pkl'
