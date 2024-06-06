@@ -1,8 +1,10 @@
 import streamlit as st
 import numpy as np
+import pandas as pd
 import pickle
 import os
-import sklearn  # Explicit import to catch issues early
+import subprocess
+import sklearn  # Ensure sklearn is installed
 
 # Function to display installed packages (for debugging)
 def show_installed_packages():
