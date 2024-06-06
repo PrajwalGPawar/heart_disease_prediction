@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np
 import pickle
 import os
+import sklearn
 
 # Load the machine learning model
 model_path = 'heart_disease_model.pkl'
