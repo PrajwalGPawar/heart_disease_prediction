@@ -4,7 +4,8 @@ import pickle
 import os
 
 # Load the machine learning model
-model_path = 'heart_disease_model.pkl'
+model_path = 'model/heart_disease_model.pkl'
+model = None
 if not os.path.exists(model_path):
     st.error(f"Model file not found: {model_path}")
 else:
@@ -37,12 +38,12 @@ glucose_map = {"Normal (80-160 mg/dL)": 1, "Above Normal (160-199 mg/dL)": 2, "H
 yes_no_map = {"No": 0, "Yes": 1}
 
 # Create input array for the model
-input_data = np.array([[age, gender_map[gender], height, weight, ap_hi, ap_lo,
-                        cholesterol_map[cholesterol], glucose_map[glucose], 
-                        yes_no_map[smoke], yes_no_map[alco], yes_no_map[active]]])
+input_data = np.array([[age * 365, height, weight, gender_map[gender], ap_hi, ap_lo,
+                       cholesterol_map[cholesterol], glucose_map[glucose], 
+                       yes_no_map[smoke], yes_no_map[alco], yes_no_map[active]]])
 
 # Predict button
-if 'model' in locals():
+if model:
     if st.button("Predict"):
         try:
             prediction = model.predict(input_data)
@@ -54,18 +55,3 @@ if 'model' in locals():
             st.error(f"Error during prediction: {e}")
 else:
     st.warning("Model is not loaded. Please ensure the model file is available.")
-
-# Dark mode toggle
-if st.checkbox('Dark mode'):
-    st.markdown("""
-        <style>
-        body {
-            background-color: #1c1c1c;
-            color: white;
-        }
-        .stButton>button {
-            background-color: #4CAF50;
-            color: white;
-        }
-        </style>
-        """, unsafe_allow_html=True)
