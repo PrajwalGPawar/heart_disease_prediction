@@ -12,7 +12,7 @@ def show_installed_packages():
 show_installed_packages()
 
 # Load the machine learning model
-model_path = 'model/heart_disease_model.pkl'
+model_path = 'heart_disease_model.pkl'
 model = None
 if not os.path.exists(model_path):
     st.error(f"Model file not found: {model_path}")
